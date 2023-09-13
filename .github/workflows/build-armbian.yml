@@ -12,11 +12,11 @@ on:
       set_release:
         description: "Select OS Release."
         required: false
-        default: "bullseye"
+        default: "jammy"
         type: choice
         options:
-          - bullseye
           - jammy
+          - bullseye
           - lunar
           - bookworm
       armbian_board:
@@ -266,8 +266,7 @@ jobs:
           tag: ${{ steps.clean.outputs.build_tag }}
           artifacts: build/output/images/*
           allowUpdates: true
-#          token: ${{ secrets.GH_TOKEN }}
-          gh_token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Rebuild Armbian
         uses: ophub/amlogic-s9xxx-armbian@main
@@ -293,8 +292,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-#          token: ${{ secrets.GH_TOKEN }}
-          gh_token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           body: |
             ### Armbian Image information
             - Default username: root
